@@ -12,6 +12,7 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
     .card {
@@ -21,8 +22,6 @@
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       max-width: 420px;
-      position: relative; /* 🔑 CLAVE */
-      overflow: hidden;
     }
 
     h1 {
@@ -37,6 +36,7 @@
       border-radius: 40px;
       cursor: pointer;
       margin: 10px;
+      transition: transform 0.2s;
     }
 
     #yes {
@@ -48,8 +48,6 @@
       background-color: #d00000;
       color: white;
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
     }
   </style>
 </head>
@@ -57,8 +55,7 @@
 
   <div class="card">
     <h1>¿sale su Airbnb este viernecito?</h1>
-
-    <button id="yes">Sí🤍</button>
+    <button id="yes">Sí 🤍</button>
     <button id="no">No</button>
   </div>
 
@@ -66,17 +63,25 @@
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
 
-    noBtn.addEventListener("mouseenter", () => {
-      const card = document.querySelector(".card");
+    let yesScale = 1;
 
-      const maxX = card.clientWidth - noBtn.offsetWidth;
-      const maxY = card.clientHeight - noBtn.offsetHeight;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
+    }
+
+    // Huye al acercarse
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    // Cada intento de clic agranda el SÍ
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      yesScale += 0.15;
+      yesBtn.style.transform = `scale(${yesScale})`;
+      moveNoButton();
     });
 
     const phoneNumber = "51937407730";
@@ -90,3 +95,4 @@
 
 </body>
 </html>
+
