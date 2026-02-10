@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>👀 Pregunta seria</title>
+  <title>Pregunta seria</title>
   <style>
     body {
       margin: 0;
@@ -12,7 +12,6 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
-      overflow: hidden;
     }
 
     .card {
@@ -22,6 +21,8 @@
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       max-width: 420px;
+      position: relative; /* 🔑 CLAVE */
+      overflow: hidden;
     }
 
     h1 {
@@ -47,6 +48,8 @@
       background-color: #d00000;
       color: white;
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
 </head>
@@ -55,27 +58,31 @@
   <div class="card">
     <h1>¿sale su Airbnb este viernecito?</h1>
 
-    <button id="yes">Sí 🤍</button>
-    <button id="no">No 🙈</button>
+    <button id="yes">Sí</button>
+    <button id="no">No</button>
   </div>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
 
-    // Botón NO huye
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 60);
+    noBtn.addEventListener("mouseenter", () => {
+      const card = document.querySelector(".card");
+
+      const maxX = card.clientWidth - noBtn.offsetWidth;
+      const maxY = card.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     });
 
-    // 📱 TU NÚMERO (sin +, sin espacios)
     const phoneNumber = "51937407730";
 
     yesBtn.addEventListener("click", () => {
-      const message = "gou, sale su Airbnb este viernecito";
+      const message = "Aceptado. Sale su Airbnb este viernecito.";
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.location.href = url;
     });
