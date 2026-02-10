@@ -11,7 +11,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
 
@@ -36,6 +36,7 @@
       border-radius: 40px;
       cursor: pointer;
       margin: 10px;
+      transition: 0.2s;
     }
 
     #yes {
@@ -48,20 +49,45 @@
       color: white;
       position: absolute;
     }
+
+    .gif-container {
+      display: none;
+    }
+
+    iframe {
+      border-radius: 15px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>¿sale su Airbnb este viernecito?</h1>
+  <div class="card" id="card">
+    <h1>¿sale su Airbnb este viernecito?✨</h1>
 
-    <button id="yes">Sí</button>
-    <button id="no">No</button>
+    <button id="yes">Sí 🤍</button>
+    <button id="no">No 🙈</button>
+  </div>
+
+  <div class="gif-container" id="gif">
+    <h1 style="color:white;text-align:center;">
+      Yeiiii, sabía que dirías que si :)
+    </h1>
+
+    <iframe 
+      src="https://giphy.com/embed/26ufdipQqU2lhNA4g" 
+      width="480" 
+      height="270" 
+      frameBorder="0" 
+      allowFullScreen>
+    </iframe>
   </div>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
+    const card = document.getElementById("card");
+    const gif = document.getElementById("gif");
 
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - 120);
@@ -70,14 +96,12 @@
       noBtn.style.top = y + "px";
     });
 
-    const phoneNumber = "51937407730";
-
     yesBtn.addEventListener("click", () => {
-      const message = "Aceptado. Sale su Airbnb este viernecito.";
-      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.location.href = url;
+      card.style.display = "none";
+      gif.style.display = "block";
     });
   </script>
 
 </body>
 </html>
+
