@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pregunta seria</title>
+  <title>👀 Pregunta seria</title>
   <style>
     body {
       margin: 0;
@@ -53,16 +53,17 @@
 <body>
 
   <div class="card">
-    <h1>¿sale su Airbnb este viernecito?😃</h1>
+    <h1>¿sale su Airbnb este viernecito?</h1>
 
-    <button id="yes">Sí🤍</button>
-    <button id="No😒">No</button>
+    <button id="yes">Sí 🤍</button>
+    <button id="no">No 🙈</button>
   </div>
 
   <script>
-    const noBtn = document.getElementById("No😒");
-    const yesBtn = document.getElementById("Sí🤍");
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
 
+    // Botón NO huye
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - 120);
       const y = Math.random() * (window.innerHeight - 60);
@@ -70,10 +71,11 @@
       noBtn.style.top = y + "px";
     });
 
+    // 📱 TU NÚMERO (sin +, sin espacios)
     const phoneNumber = "51937407730";
 
     yesBtn.addEventListener("click", () => {
-      const message = "Aceptoo, sale su Airbnb este viernecito";
+      const message = "gou, sale su Airbnb este viernecito";
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.location.href = url;
     });
@@ -81,4 +83,3 @@
 
 </body>
 </html>
-
